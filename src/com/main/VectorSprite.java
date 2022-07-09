@@ -5,14 +5,19 @@ import java.awt.*;
 public class VectorSprite {
     float x, y, xspeed, yspeed, angle, speed, rspeed;
     Polygon poly, vpoly;
+    Color c, d = Color.GREEN; //c = object color, d = default color
 
     VectorSprite(int x, int y){
         this.x = x;
         this.y = y;
+        c = new Color(Game.r.nextInt(201) + 55, Game.r.nextInt(201) + 55, Game.r.nextInt(201) + 55, 255);
     }
 
     void draw(Graphics g){
-        g.drawPolygon(vpoly);
+        g.setColor(c);
+        g.fillPolygon(vpoly);
+        g.setColor(d);
+        //g.drawRect(hitbox().x, hitbox().y, hitbox().width, hitbox().height);
     }
 
     void update(){
@@ -28,5 +33,9 @@ public class VectorSprite {
             vpoly.ypoints[i] = y2;
         }
         vpoly.translate((int)x, (int)y);
+    }
+
+    Rectangle hitbox(){
+        return new Rectangle((int)x - (poly.getBounds().width / 2), (int)y - (poly.getBounds().height / 2), poly.getBounds().width, poly.getBounds().height);
     }
 }
