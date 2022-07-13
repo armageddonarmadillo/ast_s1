@@ -106,10 +106,6 @@ public class Game extends Scene {
         int y = r.nextInt(wh - b) + b;
 
         upgrades.add(new Upgrade("boost", x, y));
-
-        //if(0 < x % 100 && x % 100 < 10) rocks.add(new small_rock(x , y));
-        //if(11 < x % 100 && x % 100 < 49) rocks.add(new med_rock(x , y));
-        //if(50 < x % 100 && x % 100 < 99) rocks.add(new big_rock(x , y));
     }
 
     @Override

@@ -155,7 +155,6 @@ public class Rock extends VectorSprite {
         y += Math.sin(a) * s;
         dt += Math.abs(Math.cos(a) * s) + Math.abs(Math.sin(a) * s);
         for(Bullet b : Game.bullets) if(hitbox().contains(b.hitbox())) {
-            System.out.println("HIT");
             durability--;
             b.active = false;
             break;

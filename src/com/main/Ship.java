@@ -8,7 +8,7 @@ public class Ship extends VectorSprite{
     int spawn_x, spawn_y, scale;
 
     //powerup stuff
-    static int powerups = 25;
+    static int powerups;
 
     Ship(int x, int y) {
         super(x, y);
@@ -48,6 +48,7 @@ public class Ship extends VectorSprite{
         rspeed = 0;
         durability = 5;
         delay = 60;
+        powerups = 0;
         c = new Color(24, 239, 148);
     }
 
