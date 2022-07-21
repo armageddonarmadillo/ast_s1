@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Bullet extends VectorSprite {
     int dt = 0; //distanced travelled
-    static int size, md = 300;
+    static int size, md = 1500;
     boolean active = true;
 
     Bullet(float x, float y, float a){
@@ -21,7 +21,7 @@ public class Bullet extends VectorSprite {
         vpoly.addPoint(1 + size, -1 + size);
 
         angle = a;
-        speed = 3;
+        speed = Ship.powerups > 0 ? 3 : .5f;
     }
 
     void update(){
@@ -29,7 +29,7 @@ public class Bullet extends VectorSprite {
         dt += Math.abs(xspeed) + Math.abs(yspeed);
         active = active && !(dt >= md);
 
-        if(Game.ship.powerups >= 5){
+        if(Ship.powerups >= 5){
             if(x >= Game.ww + poly.getBounds().width) x = 0;
             if(x <= -poly.getBounds().width) x = Game.ww;
             if(y >= Game.wh + poly.getBounds().height) y = 0;

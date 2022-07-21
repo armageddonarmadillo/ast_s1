@@ -25,7 +25,7 @@ public class Game extends Scene {
     }
 
     void init(){
-        UI.life = 5;
+        UI.life = 7;
         UI.score = 0;
         add_lines(10);
         ship = new Ship(ww / 2, wh / 2);
@@ -50,6 +50,8 @@ public class Game extends Scene {
     }
 
     void update(){
+        if(UI.life < 0) Main.swap_scene(new GameOver());
+
         //adding elements
         if(rock_timer++ >= current_delay){
             current_delay = (Math.max(current_delay - (current_delay / 10), (rock_delay / 10)));
@@ -105,7 +107,8 @@ public class Game extends Scene {
         int x = r.nextInt(ww - b) + b;
         int y = r.nextInt(wh - b) + b;
 
-        upgrades.add(new Upgrade("boost", x, y));
+        if(r.nextInt() % 2 == 0) upgrades.add(new Upgrade("boost", x, y));
+        else upgrades.add(new Health(x, y));
     }
 
     @Override

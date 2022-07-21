@@ -47,9 +47,10 @@ public class Ship extends VectorSprite{
         speed = 0;
         rspeed = 0;
         durability = 5;
-        delay = 60;
+        delay = Ship.powerups > 0 ? 60 : 999;
         powerups = 0;
         c = new Color(24, 239, 148);
+        vpoly.translate(x, y);
     }
 
     void update(){
@@ -66,6 +67,11 @@ public class Ship extends VectorSprite{
         if(x <= -poly.getBounds().width) x = Game.ww;
         if(y >= Game.wh + poly.getBounds().height) y = 0;
         if(y <= -poly.getBounds().height) y = Game.wh;
+    }
+
+    void update2P(){
+        super.update();
+
     }
 
     void fire(){

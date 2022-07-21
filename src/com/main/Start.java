@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Start extends Scene {
     Font f1, f2;
-    String title = "Asteroids";
+    String title = "It's our last class!";
     String instructions = "PRESS ENTER TO START";
 
     //effect variables
@@ -35,7 +35,6 @@ public class Start extends Scene {
         //timer logic for effects
         d = drawn_title.length() < title.length() ? 50 : 3000;
         if(c++ >= d){
-            add_rocks();
             ct = new Color(Game.r.nextInt(256), Game.r.nextInt(256), Game.r.nextInt(256));
             c = 0;
             if(draw_forwards){
@@ -44,6 +43,7 @@ public class Start extends Scene {
             if(drawn_title.length() >= title.length() || drawn_title.length() <= 0) draw_forwards = !draw_forwards;
         }
         if(e++ >= t){
+            add_rocks();
             e = 0;
             blink = !blink;
         } //timer logic ends
@@ -53,10 +53,7 @@ public class Start extends Scene {
         g.fillRect(0, 0, Game.ww, Game.wh); //clear screen ends
 
         for(Rock rock : rocks) rock.draw(g);
-        for(Rock rock : rocks) {
-            if(!rock.update_rock()) break;
-            System.out.println(rock.active);
-        }
+        for(Rock rock : rocks) if(!rock.update_rock()) break;
         house_keeping();
 
         //test split-title draw
@@ -88,7 +85,7 @@ public class Start extends Scene {
         int y = Game.r.nextInt() % Game.wh;
         if(x % 2 == 0) x = -(x % b); else  x = Game.ww + (x % b);
 
-        rocks.add(Game.r.nextInt() % 2 == 0 ? new Rock(x, y, 20) : new Star(x, y, 5));
+        rocks.add(Game.r.nextInt() % 2 == 0 ? new Rock(x, y, 20) :new Star(x, y, 5)); //
 //        if(0 < x % 100 && x % 100 < 10) rocks.add(new small_rock(x , y));
 //        if(11 < x % 100 && x % 100 < 49) rocks.add(new med_rock(x , y));
 //        if(50 < x % 100 && x % 100 < 99) rocks.add(new big_rock(x , y));
@@ -111,5 +108,6 @@ public class Start extends Scene {
     @Override
     public void keyReleased(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_ENTER && Main.window.current_scene == this) Main.swap_scene(new Game());
+        if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE && Main.window.current_scene == this) Main.swap_scene(new Game2P());
     }
 }
